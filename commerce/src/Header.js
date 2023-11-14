@@ -11,11 +11,12 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
+  Button
 } from 'reactstrap';
 
 import './App.css';
 
-function Header({selectedProducts,TotalPrice}) {
+function Header({seciliUrunler,sepetiBosalt}) {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
@@ -38,6 +39,16 @@ function Header({selectedProducts,TotalPrice}) {
                     Sepet 
                   </DropdownToggle>
                   <DropdownMenu right className="text-right genis-dropdown-menu">
+
+                  {seciliUrunler.map(
+                    (item)=>(
+                      <DropdownItem>
+                        {item.ad} - {item.fiyat}
+                      </DropdownItem>
+                    )
+                    
+                   )
+                  }
     
                     <DropdownItem>
                       Toplam: 
@@ -46,11 +57,16 @@ function Header({selectedProducts,TotalPrice}) {
                       <button className="btn btn-success btn-sm" >
                         Sepet Onayla
                       </button>{' '}
-                      <button className="btn btn-danger btn-sm right2" >
-                        Boşalt
-                      </button>
+                     
                     </DropdownItem>
-                    
+                    <div>
+                    <Button className='ms-3 mt-1'
+                      onClick={()=>{sepetiBosalt()}}
+                      color="warning"
+                    >
+                      Sepeti Sil
+                    </Button>
+                  </div>
                   </DropdownMenu>
                 </UncontrolledDropdown>
           </Nav>

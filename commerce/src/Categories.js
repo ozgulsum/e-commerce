@@ -1,7 +1,7 @@
 import {React,useState} from 'react';
 
 
-function Categories({categories}) {
+function Categories({categories,newProduct,setNewProduct,addNewProduct}) {
 
 console.log(categories);//Props Yapısı:Bir componentten diğerine stateleri,fonksiyonları göndermeyi sağlar.
 
@@ -37,21 +37,12 @@ console.log(categories);//Props Yapısı:Bir componentten diğerine stateleri,fo
             className="form-control"
             id="urunAdi"
             name="ad"
+            value={newProduct.ad}
+            onChange={(e)=>setNewProduct({...newProduct,ad:e.target.value})}
             
           
             x
           />
-        </div>
-        <div className="form-group">
-          <label htmlFor="aciklama" className=" mt-2">Ürün Açıklaması:</label>
-          <textarea
-            className="form-control"
-            id="aciklama"
-            name="aciklama"
-            rows="3"
-           
- 
-          ></textarea>
         </div>
         <div className="form-group">
           <label htmlFor="urunFiyati" className=" mt-2">Ürün Fiyatı:</label>
@@ -60,64 +51,24 @@ console.log(categories);//Props Yapısı:Bir componentten diğerine stateleri,fo
             className="form-control"
             id="urunFiyati"
             name="fiyat"
-            
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="resim" className=" mt-2">Ürün Resmi:</label>
-          <input
-            className="form-control"
-            id="resim"
-            name="resim"
-            rows="3"
-            type='text'
+            value={newProduct.fiyat}
+            onChange={(e)=>setNewProduct({...newProduct,fiyat:parseFloat(e.target.value)})} //İNT GELDİĞİNDEN DEĞERİ DÖNÜŞTÜR
             
           />
         </div>
         
-        
-        <div className="form-group">
-          <label htmlFor="urunKategorisi" className=" mt-2">Ürün Kategorisi:</label>
-          <select
-            className="form-control"
-            id="urunKategorisi"
-            name="kategori"
-           defaultValue={"Elektronik"}
-            
-          >
-            
-            {
-              categories.map((kategori)=>(
-                <option value={kategori.ad}>{kategori.ad}</option>
-              ))
-            }
-
-          </select>
-        </div>
         <button
           type="button"
           className="btn btn-success mt-2"
-          
+          onClick={addNewProduct}
         >
           Ürün Ekle
         </button>
-      
-      
-      
-          
+       
           </form>
         
-       
+
       </div>
-      
-      
-      
-      
-      
-      
-      
-      
-      
       
       </div>
     

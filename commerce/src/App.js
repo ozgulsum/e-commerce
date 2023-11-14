@@ -25,18 +25,43 @@ const [products, setProducts] = useState([
   { id: 7, kategori: "Ev Aletleri", ad: "Çamaşır Makinesi", fiyat: 12000.00, aciklama: "Çamaşırlarınız hiç olmadığı kada temiz olacak.", resim: "https://productimages.hepsiburada.net/s/274/300-443/110000260569002.jpg" },
   ]);
 
-const addProduct = () => {
+const [seciliUrunler,setSeciliUrunler]= useState([]);
+
+const addProduct = (product) => {
   console.log("Ürün eklendi");
+  setSeciliUrunler([...seciliUrunler, product]);
   
 }
+
+const sepetiBosalt =() => {
+  console.log("Ürün silindi");
+  setSeciliUrunler([]);
+}
+
+const [newProduct,setNewProduct]= useState({});
+const [nextID,setNextID]=useState([8]);
+
+const addNewProduct = () => {
+  console.log("Ürün ekle");
+  setNewProduct([{...newProduct , id:nextID}]);
+  setProducts([...products,newProduct]);
+  setNextID(nextID + 1);
+  
+
+
+
+
+
+}
+
 
 
   return (
     <div className="App">
-    <Header/>
+    <Header seciliUrunler={seciliUrunler} sepetiBosalt={sepetiBosalt} />
     <div className='row'>
-   <Categories categories={categories}/> 
-  <Product products={products} addProduct={addProduct}/>
+   <Categories categories={categories} newProduct={newProduct} setNewProduct={setNewProduct} addNewProduct={addNewProduct}/> 
+  <Product products={products} addProduct={addProduct} seciliUrunler={seciliUrunler}/>
   
     </div>
     
@@ -46,3 +71,4 @@ const addProduct = () => {
 }
 
 export default App;
+
